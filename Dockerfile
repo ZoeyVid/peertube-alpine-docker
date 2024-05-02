@@ -7,7 +7,7 @@ ARG PT_VERSION= \
 RUN apk upgrade --no-cache -a && \
     apk add --no-cache ca-certificates bash nodejs-current yarn npm git && \
     yarn global add clean-modules && \
-    git clone --recursive https://github.com/FKLC/WhatsAppToDiscord --branch "$PT_VERSION" /app && \
+    git clone --recursive https://github.com/Chocobozzz/PeerTube --branch "$PT_VERSION" /app && \
     sed -i "s|gosu|su-exec|g" /app/support/docker/production/entrypoint.sh && \
     if [ "$TARGETARCH" = "amd64" ]; then \
       cd /app/client && \
