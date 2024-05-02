@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:labs
-FROM --platform="$BUILDPLATFORM" node:18.20.2-alpine3.19 as build
+FROM --platform="$BUILDPLATFORM" node:20.12.2-alpine3.19 as build
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 ARG PT_VERSION=v6.1.0 \
     TARGETARCH
@@ -36,7 +36,7 @@ RUN apk upgrade --no-cache -a && \
     fi && \
     yarn cache clean --all
 
-FROM node:18.20.2-alpine3.19
+FROM node:20.12.2-alpine3.19
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 COPY --from=build /app /app
 WORKDIR /app
