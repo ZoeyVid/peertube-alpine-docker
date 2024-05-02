@@ -1,0 +1,34 @@
+services:
+  peertube:
+    container_name: peertube
+    image: chocobozzz/peertube:production-bookworm
+    restart: always
+    ports:
+     # - "1935:1935"
+     - "127.0.0.1:9000:9000"
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - stack.env
+    volumes:
+      - /opt/peertube/data:/data
+      - /opt/peertube/config:/config
+
+  postgres:
+    container_name: peertube-db
+    image: postgres:15-alpine
+    restart: always
+    env_file:
+      - stack.env
+    volumes:
+      - /opt/peertube/db:/var/lib/postgresql/data
+
+  redis:
+    container_name: peertube-redis
+    image: redis:alpine
+    restart: always
+    environment:
+      - "TZ=Europe/Berlin"
+    volumes:
+      - /opt/peertube/redis:/data
