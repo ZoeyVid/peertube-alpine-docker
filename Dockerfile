@@ -39,7 +39,7 @@ RUN apk add --no-cache ca-certificates tzdata tini su-exec nodejs ffmpeg shadow 
     useradd -r -g peertube -m peertube && \
     mv -v /app/support/docker/production/entrypoint.sh /usr/local/bin/entrypoint.sh && \
     mkdir /data /config && \
-    chown -R peertube:peertube /data /config && \
+    chown peertube:peertube /app /data /config && \
     apk del --no-cache shadow
 
 ENV NODE_ENV=production
