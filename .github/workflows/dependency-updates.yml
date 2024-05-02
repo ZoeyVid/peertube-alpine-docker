@@ -7,7 +7,7 @@ on:
     - cron: "0 */6 * * *"
   workflow_dispatch:
 jobs:
-  w2d-update:
+  peertube-update:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
