@@ -34,7 +34,7 @@ FROM alpine:3.19.1
 COPY --chown=1000:1000 --from=build /app /app
 WORKDIR /app
 
-RUN apk add --no-cache ca-certificates tzdata tini su-exec nodejs ffmpeg shadow && \
+RUN apk add --no-cache ca-certificates tzdata tini su-exec nodejs yarn ffmpeg shadow && \
     groupadd -r peertube && \
     useradd -r -g peertube -m peertube && \
     mv -v /app/support/docker/production/entrypoint.sh /usr/local/bin/entrypoint.sh && \
