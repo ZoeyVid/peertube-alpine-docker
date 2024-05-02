@@ -1,4 +1,4 @@
-# w2d-docker
+# peertube-alpine-docker
 
 ## How to use?
 
