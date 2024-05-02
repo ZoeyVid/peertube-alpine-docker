@@ -1,7 +1,7 @@
 services:
   peertube:
     container_name: peertube
-    image: chocobozzz/peertube:production-bookworm
+    image: zoeyvid/peertube-alpine-docker
     restart: always
     ports:
      # - "1935:1935"
@@ -17,7 +17,7 @@ services:
 
   postgres:
     container_name: peertube-db
-    image: postgres:15-alpine
+    image: postgres:16-alpine
     restart: always
     env_file:
       - stack.env
