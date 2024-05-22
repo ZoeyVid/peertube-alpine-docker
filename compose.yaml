@@ -26,7 +26,7 @@ services:
 
   redis:
     container_name: peertube-redis
-    image: redis:alpine
+    image: zoeyvid/valkey-static
     restart: always
     environment:
       - "TZ=Europe/Berlin"
