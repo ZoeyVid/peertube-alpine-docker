@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:labs
-FROM --platform="$BUILDPLATFORM" alpine:3.20.0 as build
+FROM --platform="$BUILDPLATFORM" alpine:3.20.1 as build
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 ARG PT_VERSION=v6.1.0 \
     TARGETARCH
@@ -30,7 +30,7 @@ RUN apk upgrade --no-cache -a && \
     clean-modules --yes && \
     yarn cache clean --all
 
-FROM alpine:3.20.0
+FROM alpine:3.20.1
 COPY --chown=1000:1000 --from=build /app /app
 WORKDIR /app
 
