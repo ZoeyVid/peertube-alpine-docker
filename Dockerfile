@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:labs
-FROM --platform="$BUILDPLATFORM" alpine:3.20.1 as build
+FROM --platform="$BUILDPLATFORM" alpine:3.20.1 AS build
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 ARG PT_VERSION=v6.1.0 \
     TARGETARCH
