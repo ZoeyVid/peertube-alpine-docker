@@ -16,7 +16,7 @@ RUN apk upgrade --no-cache -a && \
       cd /app && \
         npm_config_target_platform=linux npm_config_target_arch=x64 yarn install --pure-lockfile && \
         npm_config_target_platform=linux npm_config_target_arch=x64 npm run build && \
-        rm -vr /app/client/.angular /app/client/node_modules /app/node_modules && \
+        rm -r /app/client/.angular /app/client/node_modules /app/node_modules && \
         npm_config_target_platform=linux npm_config_target_arch=x64 yarn install --pure-lockfile --production && \
         for file in $(find /app/node_modules -name "*.node" -type f -exec file {} \; | grep -v "x86-64" | sed "s|\(.*\):.*|\1|g"); do rm -v "$file"; done; \
     elif [ "$TARGETARCH" = "arm64" ]; then \
@@ -25,7 +25,7 @@ RUN apk upgrade --no-cache -a && \
       cd /app && \
         npm_config_target_platform=linux npm_config_target_arch=arm64 yarn install --pure-lockfile && \
         npm_config_target_platform=linux npm_config_target_arch=arm64 npm run build && \
-        rm -vr /app/client/.angular /app/client/node_modules /app/node_modules && \
+        rm -r /app/client/.angular /app/client/node_modules /app/node_modules && \
         npm_config_target_platform=linux npm_config_target_arch=arm64 yarn install --pure-lockfile --production && \
         for file in $(find /app/node_modules -name "*.node" -type f -exec file {} \; | grep -v "aarch64" | sed "s|\(.*\):.*|\1|g"); do rm -v "$file"; done; \
     fi && \
