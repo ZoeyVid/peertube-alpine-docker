@@ -5,7 +5,7 @@ ARG PT_VERSION=v6.2.0 \
     TARGETARCH
 
 RUN apk upgrade --no-cache -a && \
-    apk add --no-cache ca-certificates bash git build-base cmake pkgconf openssl openssl-dev openssl-libs-static nodejs yarn npm python3 file && \
+    apk add --no-cache ca-certificates bash git build-base cmake pkgconf openssl-libs-static nodejs yarn npm python3 file && \
     yarn global add clean-modules && \
     git clone --recursive https://github.com/Chocobozzz/PeerTube --branch "$PT_VERSION" /app && \
     sed -i "s|gosu|su-exec|g" /app/support/docker/production/entrypoint.sh && \
