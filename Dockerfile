@@ -1,11 +1,11 @@
 # syntax=docker/dockerfile:labs
-FROM --platform="$BUILDPLATFORM" alpine:3.20.1 AS build
+FROM --platform="$BUILDPLATFORM" python:3.12.4-alpine3.20 AS build
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 ARG PT_VERSION=v6.2.0 \
     TARGETARCH
 
 RUN apk upgrade --no-cache -a && \
-    apk add --no-cache ca-certificates bash git build-base cmake pkgconf openssl nodejs yarn npm python3 file && \
+    apk add --no-cache ca-certificates bash git build-base cmake openssl nodejs yarn npm file && \
     yarn global add clean-modules && \
     git clone --recursive https://github.com/Chocobozzz/PeerTube --branch "$PT_VERSION" /app && \
     sed -i "s|gosu|su-exec|g" /app/support/docker/production/entrypoint.sh && \
@@ -38,7 +38,7 @@ RUN apk upgrade --no-cache -a && \
     find /app/node_modules -name "*.node" -type f -exec strip -s {} \; && \
     find /app/node_modules -name "*.node" -type f -exec file {} \;
 
-FROM alpine:3.20.1
+python:3.12.4-alpine3.20
 COPY --chown=1000:1000 --from=strip /app /app
 WORKDIR /app
 RUN apk add --no-cache ca-certificates tzdata tini su-exec nodejs yarn ffmpeg shadow && \
