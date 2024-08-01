@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:labs
 FROM --platform="$BUILDPLATFORM" python:3.12.4-alpine3.20 AS build
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
-ARG PT_VERSION=v6.2.0 \
+ARG PT_VERSION=v6.2.1 \
     TARGETARCH
 
 RUN apk upgrade --no-cache -a && \
