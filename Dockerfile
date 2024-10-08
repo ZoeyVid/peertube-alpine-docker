@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:labs
-FROM --platform="$BUILDPLATFORM" python:3.12.7-alpine3.20 AS build
+FROM --platform="$BUILDPLATFORM" python:3.13.0-alpine3.20 AS build
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
-ARG PT_VERSION=v6.3.1 \
+ARG PT_VERSION=v6.3.2 \
     TARGETARCH
 
 RUN apk upgrade --no-cache -a && \
@@ -38,7 +38,7 @@ RUN apk upgrade --no-cache -a && \
     find /app/node_modules -name "*.node" -type f -exec strip -s {} \; && \
     find /app/node_modules -name "*.node" -type f -exec file {} \;
 
-FROM python:3.12.7-alpine3.20
+FROM python:3.13.0-alpine3.20
 COPY --chown=1000:1000 --from=strip /app /app
 WORKDIR /app
 RUN apk add --no-cache ca-certificates tzdata tini su-exec nodejs yarn ffmpeg shadow && \
