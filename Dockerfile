@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:labs
-FROM --platform="$BUILDPLATFORM" python:3.13.1-alpine3.20 AS build
+FROM --platform="$BUILDPLATFORM" python:3.13.1-alpine3.21 AS build
 ENV PYTHONUNBUFFERED=1
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 ARG PT_VERSION=v6.3.3 \
@@ -32,14 +32,14 @@ RUN apk upgrade --no-cache -a && \
     fi && \
     yarn cache clean --all && \
     clean-modules --yes
-FROM alpine:3.20.3 AS strip
+FROM alpine:3.21.0 AS strip
 COPY --from=build /app /app
 RUN apk upgrade --no-cache -a && \
     apk add --no-cache ca-certificates binutils file && \
     find /app/node_modules -name "*.node" -type f -exec strip -s {} \; && \
     find /app/node_modules -name "*.node" -type f -exec file {} \;
 
-FROM python:3.13.1-alpine3.20
+FROM python:3.13.1-alpine3.21
 ENV PYTHONUNBUFFERED=1
 COPY --chown=1000:1000 --from=strip /app /app
 WORKDIR /app
