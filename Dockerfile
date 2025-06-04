@@ -2,7 +2,7 @@
 FROM --platform="$BUILDPLATFORM" python:3.13.3-alpine3.22 AS build
 ENV PYTHONUNBUFFERED=1
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
-ARG PT_VERSION=v7.1.1 \
+ARG PT_VERSION=v7.2.0 \
     TARGETARCH
 
 RUN apk upgrade --no-cache -a && \
