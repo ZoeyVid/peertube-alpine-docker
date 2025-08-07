@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:labs
-FROM --platform="$BUILDPLATFORM" python:3.13.5-alpine3.22 AS build
+FROM --platform="$BUILDPLATFORM" python:3.13.6-alpine3.22 AS build
 ENV PYTHONUNBUFFERED=1
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 ARG PT_VERSION=v7.2.3 \
@@ -39,7 +39,7 @@ RUN apk upgrade --no-cache -a && \
     find /app/node_modules -name "*.node" -type f -exec strip -s {} \; && \
     find /app/node_modules -name "*.node" -type f -exec file {} \;
 
-FROM python:3.13.5-alpine3.22
+FROM python:3.13.6-alpine3.22
 ENV PYTHONUNBUFFERED=1
 COPY --chown=1000:1000 --from=strip /app /app
 WORKDIR /app
