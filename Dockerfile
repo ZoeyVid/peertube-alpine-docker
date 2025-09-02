@@ -43,7 +43,7 @@ FROM python:3.13.7-alpine3.22
 ENV PYTHONUNBUFFERED=1
 COPY --chown=1000:1000 --from=strip /app /app
 WORKDIR /app
-RUN apk add --no-cache ca-certificates tzdata tini su-exec nodejs yarn ffmpeg shadow && \
+RUN apk add --no-cache ca-certificates tzdata tini su-exec nodejs yarn ffmpeg shadow mesa-va-gallium mesa-dri-gallium && \
     groupadd -r peertube && \
     useradd -r -g peertube -m peertube && \
     mv -v /app/support/docker/production/entrypoint.sh /usr/local/bin/entrypoint.sh && \
