@@ -8,7 +8,7 @@ ARG PT_VERSION=v7.3.0 \
 RUN apk upgrade --no-cache -a && \
     apk add --no-cache ca-certificates bash git build-base cmake openssl-dev openssl-libs-static nodejs yarn npm file && \
     yarn global add clean-modules && \
-    git clone --depth 1 --shallow-submodules --recursive-submodules https://github.com/Chocobozzz/PeerTube --branch "$PT_VERSION" /app && \
+    git clone --depth 1 --shallow-submodules --recurse-submodules https://github.com/Chocobozzz/PeerTube --branch "$PT_VERSION" /app && \
     sed -i "s|gosu|su-exec|g" /app/support/docker/production/entrypoint.sh && \
     chmod +x /app/support/docker/production/entrypoint.sh && \
     if [ "$TARGETARCH" = "amd64" ]; then \
